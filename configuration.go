@@ -26,13 +26,13 @@ func (c contextKey) String() string {
 var (
 	// ContextOAuth2 takes a oauth2.TokenSource as authentication for the request.
 	ContextOAuth2 = contextKey("token")
-
+	
 	// ContextBasicAuth takes BasicAuth as authentication for the request.
 	ContextBasicAuth = contextKey("basic")
-
+	
 	// ContextAccessToken takes a string oauth2 access token as authentication for the request.
 	ContextAccessToken = contextKey("accesstoken")
-
+	
 	// ContextAPIKey takes an APIKey as authentication for the request
 	ContextAPIKey = contextKey("apikey")
 )
@@ -64,7 +64,7 @@ func NewConfiguration(opts ...CfgOption) *Configuration {
 	cfg := &Configuration{
 		BasePath:      "http://localhost:8000/",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "Swagger-Codegen/1.0.0/go",
+		UserAgent:     "vela-client/1.0.0/go",
 	}
 	for _, opt := range opts {
 		opt(cfg)
@@ -75,6 +75,21 @@ func NewConfiguration(opts ...CfgOption) *Configuration {
 func WithBasePath(BasePath string) CfgOption {
 	return func(c *Configuration) {
 		c.BasePath = BasePath
+	}
+}
+func WithHost(Host string) CfgOption {
+	return func(c *Configuration) {
+		c.Host = Host
+	}
+}
+func WithScheme(Scheme string) CfgOption {
+	return func(c *Configuration) {
+		c.Scheme = Scheme
+	}
+}
+func WithUserAgent(UserAgent string) CfgOption {
+	return func(c *Configuration) {
+		c.UserAgent = UserAgent
 	}
 }
 func (c *Configuration) AddDefaultHeader(key string, value string) {
