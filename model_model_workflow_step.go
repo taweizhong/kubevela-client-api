@@ -20,7 +20,7 @@ type ModelWorkflowStep struct {
 	Name        string                    `json:"name"`
 	OrderIndex  int32                     `json:"orderIndex"`
 	Outputs     []V1alpha1OutputItem      `json:"outputs,omitempty"`
-	Properties  *ModelJsonStruct          `json:"properties,omitempty"`
+	Properties  map[string]interface{}    `json:"properties,omitempty"`
 	SubSteps    []ModelWorkflowStepBase   `json:"subSteps,omitempty"`
 	Timeout     string                    `json:"timeout,omitempty"`
 	Type_       string                    `json:"type"`
